@@ -1,0 +1,26 @@
+Initialize line counter l to 1 and token counter t to 0.
+Open the file input.txt for reading.
+Read the first character ch from the file.
+While the character ch is not EOF:
+If ch is a delimiter:
+Print line number l, token number t, "Special symbol", and the character ch.
+Increment token counter t.
+Else if ch is an operator:
+Print line number l, token number t, "Operator", and the character ch.
+Increment token counter t.
+Else if ch is an alphabetic character:
+Initialize a string str and add ch to str.
+Read subsequent characters into str while they are alphanumeric.
+Terminate str with a null character.
+If str is a keyword:
+Print line number l, token number t, "Keyword", and the string str.
+Else:
+Print line number l, token number t, "Identifier", and the string str.
+Increment token counter t.
+If the next character is an operator:
+Print line number l, token number t, "Operator", and the next character.
+Increment token counter t.
+Else if ch is a newline character:
+Increment line counter l.
+Read the next character ch.
+Close the file and end
