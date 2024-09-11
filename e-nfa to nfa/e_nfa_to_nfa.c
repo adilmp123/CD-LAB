@@ -2,8 +2,8 @@
 #include <stdlib.h>
 struct node
 {
-    int st;
-    struct node *link;
+    int val;
+    struct node *next;
 };
 
 void findclosure(int, int);
@@ -21,34 +21,41 @@ void main()
     int i, j, k, m, t, n;
 
     struct node *temp;
-    printf("enter the number of alphabets?\n");
+    printf("enter the number of alphabets: ");
     scanf("%d", &noalpha);
     getchar();
-    printf("NOTE:- [ use letter e as epsilon]\n");
 
-    printf("NOTE:- [e must be last character ,if it is present]\n");
+    printf("use letter e as epsilon\n");
+    printf("e must be last character ,if it is present\n");
 
-    printf("\nEnter alphabets?\n");
+    printf("\nEnter alphabets: ");
+
     for (i = 0; i < noalpha; i++)
     {
 
         alphabet[i] = getchar();
         getchar();
     }
-    printf("Enter the number of states?\n");
+
+    printf("Enter the number of states: ");
     scanf("%d", &nostate);
-    printf("Enter the start state?\n");
+
+    printf("Enter the start state: ");
     scanf("%d", &start);
-    printf("Enter the number of final states?\n");
+
+    printf("Enter the number of final states: ");
     scanf("%d", &nofinal);
-    printf("Enter the final states?\n");
-    for (i = 0; i < nofinal; i++)
-        scanf("%d", &finalstate[i]);
-    printf("Enter no of transition?\n");
+
+    printf("Enter the final states: ");
+    for (i = 0; i < nofinal; i++) scanf("%d", &finalstate[i]);
+
+    printf("Enter no of transition: ");
     scanf("%d", &notransition);
-    printf("NOTE:- [Transition is in the form--> qno   alphabet   qno]\n", notransition);
-    printf("NOTE:- [States number must be greater than zero]\n");
-    printf("\nEnter transition?\n");
+
+    printf("Transition is in the form--> qno   alphabet   qno\n", notransition);
+    printf("States number must be greater than zero\n");
+    printf("\nEnter transition\n");
+
     for (i = 0; i < notransition; i++)
     {
 
@@ -73,10 +80,13 @@ void main()
     printf("-----------------------------------\n");
     printf("start state:");
     print_e_closure(start);
+
     printf("\nAlphabets:");
+
     for (i = 0; i < noalpha; i++)
         printf("%c ", alphabet[i]);
     printf("\nStates :");
+    
     for (i = 1; i <= nostate; i++)
         print_e_closure(i);
 
@@ -97,8 +107,8 @@ void main()
                 while (temp != NULL)
                 {
 
-                    unionclosure(temp->st);
-                    temp = temp->link;
+                    unionclosure(temp->val);
+                    temp = temp->next;
                 }
             }
             printf("\n");
@@ -130,8 +140,8 @@ void findclosure(int x, int sta)
         temp = transition[x][noalpha - 1];
         while (temp != NULL)
         {
-            findclosure(temp->st, sta);
-            temp = temp->link;
+            findclosure(temp->val, sta);
+            temp = temp->next;
         }
     }
 }
@@ -147,8 +157,8 @@ void insert_trantbl(int r, char c, int s)
         exit(0);
     }
     temp = (struct node *)malloc(sizeof(struct node));
-    temp->st = s;
-    temp->link = transition[r][j];
+    temp->val = s;
+    temp->next = transition[r][j];
     transition[r][j] = temp;
 }
 
