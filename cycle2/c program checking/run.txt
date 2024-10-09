@@ -1,0 +1,6 @@
+lex y.l;yacc -d y.y; gcc lex.yy.c y.tab.c -ll -ly -w -o output; ./output;
+
+lex y.l;
+yacc -d y.y; 
+gcc lex.yy.c y.tab.c -ll -ly -w -o output; 
+./output;
