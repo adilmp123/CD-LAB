@@ -1,0 +1,6 @@
+bison -d y.y; lex y.l; gcc y.tab.c lex.yy.c -lfl -o output -lfl;./output
+
+bison -d y.y; 
+lex y.l;
+gcc y.tab.c lex.yy.c -lfl -o output -lfl;
+./output
