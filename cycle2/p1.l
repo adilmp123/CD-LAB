@@ -1,13 +1,31 @@
 %{
 #include <stdio.h>
+#include <stdlib.h>
 %}
 
-%% 
-.*adil.*   { /* do nothing */ }
-.|\n      { printf("%s\n", yytext); }
 %%
 
+"adil"         { 
+    printf("Forbidden substring 'adil' found!\n");
+    exit(1);  
+}
+
+.              { 
+    putchar(yytext[0]);  
+}
+
+\n             { 
+    putchar('\n');  
+}
+
+%% 
+
 int main(int argc, char **argv) {
-    yylex();
+    printf("Enter strings (Ctrl+D to end):\n");
+    yylex();  
     return 0;
+}
+
+void yyerror(const char *s) {
+    fprintf(stderr, "Error: %s\n", s);
 }
