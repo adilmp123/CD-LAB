@@ -1,0 +1,1 @@
+lex y.l;yacc -d y.y; gcc y.tab.c -ll -ly -w -o output; ./output;
